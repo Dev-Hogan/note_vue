@@ -47,7 +47,7 @@
             v-model="verificationCode[i - 1]"
             :max-length="1"
             auto-complete="new-password"
-            @update:model-value="(d) => updateCode(i - 1, d || '')"
+            @update:model-value="(d: string) => updateCode(i - 1, d || '')"
             @keyup.delete="deleteCode(i - 1)"
           ></NtInput>
         </div>
