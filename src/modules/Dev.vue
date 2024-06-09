@@ -6,6 +6,22 @@
     </template>
   </NtHeader>
   <NtContent>
+    <div>登录</div>
+    <div>Email</div>
+    <NtInput v-model="signUpEntity.email"></NtInput>
+    <div>password</div>
+    <NtInput v-model="signUpEntity.password"></NtInput>
+    <button @click="register(signUpEntity)">注册</button>
+    <button @click="login(signUpEntity)">登录</button>
+    <button @click="logout()">登出</button>
+    <button @click="getUser()">获取用户信息</button>
+    <NtInput v-model:model-value="insertTag"></NtInput>
+    <button @click="addTagAPI(insertTag)">添加tag</button>
+    <button @click="async () => (list = await getTagsAPI())">获取标签内容</button>
+    {{ list }}
+    <button @click="loginWithGithub">用github登录</button>
+    <button>邮箱登录</button>
+    <br />
     <h1>开发工具</h1>
     <button class="border" @click="toggleTheme">点击切换主题{{ themeMode }}</button>
     <br />
@@ -76,7 +92,7 @@
 
     <NtChart></NtChart>
     <button @click="getTag">点击获取所有分类</button>
-    {{tags}}
+    {{ tags }}
   </NtContent>
 </template>
 
@@ -91,12 +107,21 @@ import { Dialog } from '@/components/NtDialog2'
 import { Tooltip } from 'ant-design-vue'
 import { useTest } from '@/components/test'
 import { useEcharts } from '@/components/NtChart'
-import { getAllTag } from '@/api'
+import { getAllTag, register, login, getUser, logout, getTagsAPI, addTagAPI,loginWithGithub } from '@/api'
 const tags = ref<any[]>([])
+const list = ref<any[] | null>()
+const signUpEntity = ref<{
+  email: string
+  password: string
+}>({
+  email: '',
+  password: ''
+})
+const insertTag = ref<string>('')
 
 async function getTag() {
   const ret = await getAllTag()
-  tags.value = ret.data||[]
+  tags.value = ret.data || []
 }
 const { NtTest } = useTest({ count: 12 })
 const { NtChart } = useEcharts({

@@ -1,5 +1,6 @@
 import { Tag, TableName, SearchParameters } from '@/service/model'
 import { saveStore, getStore, deleteStore, getAllStore, searchStore } from '@/service/controller'
+import { supabase } from '../supbaseAPI'
 
 export async function getAllTags() {
   const ret = await getAllStore<Tag>(TableName.tag)
@@ -24,4 +25,13 @@ export async function saveTag(option: Tag) {
 export async function searchTag(option?: SearchParameters<Tag>, all = false) {
   const ret = await searchStore<Tag>(TableName.tag, option, all)
   return ret
+}
+
+export async function getTagsAPI() {
+  const { data } = await supabase.from('tag').select()
+  return data
+}
+
+export async function addTagAPI(name: string) {
+  const {} = await supabase.from('tag').insert([{ name }])
 }
