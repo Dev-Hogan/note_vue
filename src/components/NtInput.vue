@@ -20,7 +20,7 @@
       :maxlength="maxLength"
       :placeholder="placeholder"
       :class="['flex-1 outline-none bg-transparent', inputClass]"
-      type="text"
+      :type
       @input="
         (e) => {
           emitInput(e as InputEvent)
@@ -43,6 +43,7 @@ withDefaults(
     autoComplete?: 'off' | 'on' | 'new-password'
     maxLength?: number
     autoFocus?: boolean
+    type?:'text'|'password'
   }>(),
   {
     placeholder: undefined,
@@ -50,7 +51,8 @@ withDefaults(
     hightLight: false,
     autoComplete: 'on',
     maxLength: undefined,
-    autoFocus: false
+    autoFocus: false,
+    type:"text"
   }
 )
 watchEffect(() => {

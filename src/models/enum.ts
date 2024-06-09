@@ -5,6 +5,7 @@ export enum Routes {
   pageNotFound = 'pageNotFound',
   home = 'home',
   login = 'login',
+  register = 'register',
 
   all = 'all',
   focus = 'focus',

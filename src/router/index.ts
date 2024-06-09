@@ -1,14 +1,20 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/Home.vue'
 import { Routes } from '@/models'
+import { useUserInfo } from '@/stores'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
+      path: '/register',
+      name: Routes.register,
+      component: () => import('@/views/Register.vue')
+    },
+    {
       path: '/login',
       name: Routes.login,
-      component: () => import('@/views/Login.vue')
+      component: () => import('@/views/Login2.vue')
     },
     {
       path: '/',
@@ -75,6 +81,14 @@ const router = createRouter({
       component: () => import('@/views/PageNotFound.vue')
     }
   ]
+})
+
+router.beforeEach((to) => {
+  const isLogin = useUserInfo().isLogin()
+  const whiteList = [Routes.login, Routes.register, Routes.pageNotFound]
+  if (!isLogin && !whiteList.includes(to?.name as Routes)) {
+    return { name: Routes.login }
+  }
 })
 
 export default router

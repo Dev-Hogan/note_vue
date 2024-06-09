@@ -6,6 +6,9 @@
     </template>
   </NtHeader>
   <NtContent>
+    <p>{{ user?.token }}</p>
+    <p>{{ user?.isLogin() }}</p>
+    <p>{{ user?.userInfo }}</p>
     <div>登录</div>
     <div>Email</div>
     <NtInput v-model="signUpEntity.email"></NtInput>
@@ -107,7 +110,19 @@ import { Dialog } from '@/components/NtDialog2'
 import { Tooltip } from 'ant-design-vue'
 import { useTest } from '@/components/test'
 import { useEcharts } from '@/components/NtChart'
-import { getAllTag, register, login, getUser, logout, getTagsAPI, addTagAPI,loginWithGithub } from '@/api'
+import {
+  getAllTag,
+  register,
+  login,
+  getUser,
+  logout,
+  getTagsAPI,
+  addTagAPI,
+  loginWithGithub
+} from '@/api'
+import { useUserInfo } from '@/stores'
+
+const user = useUserInfo()
 const tags = ref<any[]>([])
 const list = ref<any[] | null>()
 const signUpEntity = ref<{

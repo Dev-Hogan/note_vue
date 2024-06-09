@@ -15,9 +15,13 @@ export async function registerPasswordless() {
   supabase.auth.signUp
 }
 
-export async function login(credentials: SingUp) {
-  // const { data, error } = await supabase.auth.signInWithPassword(credentials)
-  const { data } = await supabase.auth.signInWithOtp({ email: credentials.email })
+export async function login(credentials?: SingUp) {
+  if (!credentials) {
+    console.debug('需要输入账号或密码')
+    return
+  }
+  const { data } = await supabase.auth.signInWithPassword(credentials)
+  // const { data } = await supabase.auth.signInWithOtp({ email: credentials.email })
   return data
 }
 
