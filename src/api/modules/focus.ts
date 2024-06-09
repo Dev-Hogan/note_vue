@@ -1,4 +1,4 @@
-import { Note, Tables } from '@/service/model'
+import { Note, TableName } from '@/service/model'
 import { filterStore } from '@/service/controller'
 import { Pagination } from './utils'
 
@@ -11,7 +11,7 @@ export async function searchFocusNote(option: GetAllNoteOption) {
   const { pageNo = 0, pageSize = 10, tagId } = option
 
   const ret = await filterStore<Note>(
-    Tables.note,
+    TableName.note,
     (d) => {
       return !!d?.isFocused && !d?.isDeleted && d?.tagId === tagId
     },

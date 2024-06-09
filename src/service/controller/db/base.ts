@@ -1,26 +1,26 @@
 import Dexie from 'dexie'
-import { MuCategory, Note, Tables, Tag } from '../../model'
+import { MuCategory, Note, TableName, Tag } from '../../model'
 import { tagsMock, categoryMock } from '@/mock'
 import dayjs from 'dayjs'
 const dbName = 'wen_chan_db'
 
 class DataBase extends Dexie {
-  [Tables.category]!: Dexie.Table<MuCategory>;
-  [Tables.note]!: Dexie.Table<Note>;
-  [Tables.tag]!: Dexie.Table<Tag>
+  [TableName.category]!: Dexie.Table<MuCategory>;
+  [TableName.note]!: Dexie.Table<Note>;
+  [TableName.tag]!: Dexie.Table<Tag>
   constructor() {
     super(dbName)
     this.version(1).stores({
-      [Tables.category]: '++id,title,createTime,updateTime',
-      [Tables.note]: '++id,content,categoryId,tagId,isFocused,isDeleted,createTime,updateTime',
-      [Tables.tag]: '++id,categoryId,tagId,isFocused,name,charsCount,createTime,updateTime'
+      [TableName.category]: '++id,title,createTime,updateTime',
+      [TableName.note]: '++id,content,categoryId,tagId,isFocused,isDeleted,createTime,updateTime',
+      [TableName.tag]: '++id,categoryId,tagId,isFocused,name,charsCount,createTime,updateTime'
     })
   }
 }
 
 const db = new DataBase()
 
-function initDB(tableNames?: { name: Tables; data: any[] }[]) {
+function initDB(tableNames?: { name: TableName; data: any[] }[]) {
   tableNames?.forEach(async (d) => {
     const datas = await db.table(d.name).toArray()
     if (datas && datas.length === 0) {
@@ -30,11 +30,11 @@ function initDB(tableNames?: { name: Tables; data: any[] }[]) {
 }
 initDB([
   {
-    name: Tables.tag,
+    name: TableName.tag,
     data: addCreateTime(tagsMock)
   },
   {
-    name: Tables.category,
+    name: TableName.category,
     data: addCreateTime(categoryMock)
   }
 ])

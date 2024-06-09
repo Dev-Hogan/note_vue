@@ -1,5 +1,5 @@
 import { db } from './db'
-import { Tables, SearchParameters } from '../model'
+import { TableName, SearchParameters } from '../model'
 import dayjs from 'dayjs'
 
 export async function saveStore<
@@ -7,7 +7,7 @@ export async function saveStore<
     createTime?: string
     updateTime?: string
   }
->(tableName: Tables, datas: T, id?: number) {
+>(tableName: TableName, datas: T, id?: number) {
   const now = dayjs().format('YYYY-MM-DD HH:mm:ss')
   if (id) {
     const ret = await db.table(tableName).update(id, { ...datas, updateTime: now })
@@ -18,23 +18,23 @@ export async function saveStore<
   }
 }
 
-export async function deleteStore(tableName: Tables, ids: number[]) {
+export async function deleteStore(tableName: TableName, ids: number[]) {
   const ret = await db.table(tableName).bulkDelete(ids)
   return ret
 }
 
-export async function getStore<T>(tableName: Tables, key: number) {
+export async function getStore<T>(tableName: TableName, key: number) {
   const ret = await db.table(tableName).get(key)
   return ret as T
 }
 
-export async function getAllStore<T>(tableName: Tables) {
+export async function getAllStore<T>(tableName: TableName) {
   const ret = await db.table(tableName).toArray()
   return ret as T[]
 }
 
 export async function filterStore<T>(
-  tableName: Tables,
+  tableName: TableName,
   filterHelper: (val?: T) => boolean = () => true,
   pageNo = 0,
   pageSize = 10
@@ -48,7 +48,7 @@ export async function filterStore<T>(
     .toArray()
   return ret as T[]
 }
-export async function searchStore<T>(tableName: Tables, p?: SearchParameters<T>, all = false) {
+export async function searchStore<T>(tableName: TableName, p?: SearchParameters<T>, all = false) {
   const fuzzyQuery = (d: any, KV: [string, any][]) => {
     for (const [key, value] of KV) {
       const reg = new RegExp(value)
@@ -89,7 +89,7 @@ export async function searchStore<T>(tableName: Tables, p?: SearchParameters<T>,
     .toArray()) as T[]
 }
 /**获取字符数量 */
-export async function getCount(tableName: Tables) {
+export async function getCount(tableName: TableName) {
   const ret = await db.table(tableName).get('count')
   const ret2 = await db.table(tableName).get('updateTime')
   return {

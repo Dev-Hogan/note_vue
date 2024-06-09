@@ -6,7 +6,7 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 import AutoImport from 'unplugin-auto-import/vite'
 import AutoImportComponents from 'unplugin-vue-components/vite'
 import svgLoader from 'vite-svg-loader'
-import eslint from 'vite-plugin-eslint'
+// import eslint from 'vite-plugin-eslint'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -28,7 +28,7 @@ export default defineConfig({
       deep: true,
       dts: 'src/components.d.ts'
     }),
-    eslint()
+    // eslint()
   ],
   assetsInclude: ['**/*.svg'],
   resolve: {
