@@ -1,4 +1,4 @@
-import { Note, TableName } from '@/service/model'
+import { NoteMock, TableName } from '@/service/model'
 import { saveStore, deleteStore, filterStore, getAllStore } from '@/service/controller'
 import { Pagination } from './utils'
 
@@ -10,7 +10,7 @@ type GetAllNoteOption = NoteOption & Pagination
 export async function searchNote(option: GetAllNoteOption) {
   const { tagId, categoryId, pageNo = 0, pageSize = 10 } = option
 
-  const ret = await filterStore<Note>(
+  const ret = await filterStore<NoteMock>(
     TableName.note,
     (d) => d?.tagId === tagId && d?.categoryId === categoryId && !d?.isDeleted,
     pageNo,
@@ -19,12 +19,12 @@ export async function searchNote(option: GetAllNoteOption) {
   return ret
 }
 
-type SaveNote = Note & {
+type SaveNote = NoteMock & {
   id?: number
   content?: string
 }
 export async function saveNote(option: SaveNote) {
-  await saveStore<Note>(TableName.note, option, option?.id)
+  await saveStore<NoteMock>(TableName.note, option, option?.id)
 }
 
 export async function deleteNote(ids: number[], isTrue = false) {
@@ -40,5 +40,5 @@ export async function deleteNote(ids: number[], isTrue = false) {
 }
 
 export async function getAllNote() {
-  return await getAllStore<Note>(TableName.note)
+  return await getAllStore<NoteMock>(TableName.note)
 }

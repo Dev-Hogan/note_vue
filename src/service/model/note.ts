@@ -1,4 +1,4 @@
-export interface Note {
+export interface NoteMock {
   id?: number
   content?: string
   categoryId?: number

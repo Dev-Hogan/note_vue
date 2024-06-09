@@ -22,13 +22,13 @@
 </template>
 
 <script setup lang="ts">
-import { Note } from '@/models'
+import { NoteMock } from '@/models'
 import { saveNote, deleteNote } from '@/api'
 import { useSessionStorage } from '@vueuse/core'
 
 withDefaults(
   defineProps<{
-    modelValue?: Note[]
+    modelValue?: NoteMock[]
   }>(),
   { modelValue: () => [] }
 )
@@ -58,7 +58,7 @@ const tagId = useSessionStorage<number | undefined>('all-tagid', undefined, {
 //     immediate: true
 //   }
 // )
-const NoteEntity = ref<Note>({
+const NoteEntity = ref<NoteMock>({
   content: ''
 })
 async function handleSaveNote({

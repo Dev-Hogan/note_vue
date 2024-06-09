@@ -75,18 +75,18 @@
 import { message } from 'ant-design-vue'
 import { deleteTag, getAllTags, saveTag } from '@/api'
 import { useAsyncState } from '@vueuse/core'
-import { Tag } from '@/models'
+import { TagMock } from '@/models'
 const categoryOpen = ref(false)
 const categoryId = ref<number>()
 
 const selectKeys = ref<number[]>([])
-const tags = ref<Tag[]>([])
+const tags = ref<TagMock[]>([])
 const { execute: refreshTags } = useAsyncState(async () => (tags.value = await getAllTags()), [], {
   immediate: false
 })
 refreshTags()
 
-function select(item: Tag) {
+function select(item: TagMock) {
   if (!item.id) {
     return
   }

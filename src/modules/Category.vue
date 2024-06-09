@@ -49,7 +49,7 @@ import { useNumberSessionRef } from '@/utils'
 import router from '@/router'
 import { searchNote, saveNote, deleteNote } from '@/api'
 import { useAsyncState } from '@vueuse/core'
-import { Note } from '@/models'
+import { NoteMock } from '@/models'
 const currentRouter = router.currentRoute
 const query = computed(() => currentRouter.value.query)
 const currentCategoryId = computed(() => +(currentRouter.value.params.categoryId || 0))
@@ -63,7 +63,7 @@ const { state: Notes, execute: refreshNotes } = useAsyncState(
     immediate: false
   }
 )
-const NoteEntity = ref<Note>({
+const NoteEntity = ref<NoteMock>({
   content: ''
 })
 watch(

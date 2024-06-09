@@ -1,14 +1,14 @@
-import { Tag, TableName, SearchParameters } from '@/service/model'
+import { TagMock, TableName, SearchParameters } from '@/service/model'
 import { saveStore, getStore, deleteStore, getAllStore, searchStore } from '@/service/controller'
 import { supabase } from '../supbaseAPI'
 
 export async function getAllTags() {
-  const ret = await getAllStore<Tag>(TableName.tag)
+  const ret = await getAllStore<TagMock>(TableName.tag)
   return ret
 }
 
 export async function getTag(id: number) {
-  const ret = await getStore<Tag>(TableName.tag, id)
+  const ret = await getStore<TagMock>(TableName.tag, id)
   return ret
 }
 
@@ -17,13 +17,13 @@ export async function deleteTag(ids: number[]) {
   return ret
 }
 
-export async function saveTag(option: Tag) {
-  const ret = await saveStore<Tag>(TableName.tag, option, option?.id)
+export async function saveTag(option: TagMock) {
+  const ret = await saveStore<TagMock>(TableName.tag, option, option?.id)
   return ret
 }
 
-export async function searchTag(option?: SearchParameters<Tag>, all = false) {
-  const ret = await searchStore<Tag>(TableName.tag, option, all)
+export async function searchTag(option?: SearchParameters<TagMock>, all = false) {
+  const ret = await searchStore<TagMock>(TableName.tag, option, all)
   return ret
 }
 

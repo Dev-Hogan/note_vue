@@ -94,12 +94,12 @@
 
 <script setup lang="ts">
 import NtEditor2 from './NtEditor2.vue'
-import { Note } from '@/models'
+import { NoteMock } from '@/models'
 import { useAsyncState, useFullscreen } from '@vueuse/core'
 import { searchTag, saveNote } from '@/api'
 const editorRef = ref<InstanceType<typeof NtEditor2>>()
 const content = defineModel<string>('content', { default: '<h1>这是标题</h1>' })
-const modelValue = defineModel<Note>({
+const modelValue = defineModel<NoteMock>({
   default: {
     id: undefined,
     content: undefined,

@@ -41,7 +41,7 @@
 <script setup lang="ts">
 import { useAsyncState, useSessionStorage } from '@vueuse/core'
 import { searchNote, saveNote, deleteNote } from '@/api'
-import { Note } from '@/models'
+import { NoteMock } from '@/models'
 
 const tagId = useSessionStorage<number | undefined>('all-tagid', undefined, {
   serializer: {
@@ -68,7 +68,7 @@ watch(
     immediate: true
   }
 )
-const NoteEntity = ref<Note>({
+const NoteEntity = ref<NoteMock>({
   content: ''
 })
 const hasNewNote = ref(false)

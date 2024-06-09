@@ -1,5 +1,5 @@
-import { Tag } from '@/models'
-export const tagsMock: Tag[] = [
+import { TagMock } from '@/models'
+export const tagsMock: TagMock[] = [
   {
     id: 1,
     name: '基础知识',

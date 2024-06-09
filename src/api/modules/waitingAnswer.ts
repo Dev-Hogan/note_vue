@@ -1,4 +1,4 @@
-import { Note, TableName } from '@/service/model'
+import { NoteMock, TableName } from '@/service/model'
 import { filterStore } from '@/service/controller'
 import { Pagination } from './utils'
 
@@ -10,7 +10,7 @@ type GetAllNoteOption = NoteOption & Pagination
 export async function searchWaitingNote(option: GetAllNoteOption) {
   const { pageNo = 0, pageSize = 10, tagId } = option
 
-  const ret = await filterStore<Note>(
+  const ret = await filterStore<NoteMock>(
     TableName.note,
     (d) => {
       return !!d?.isWaiting && d?.tagId === tagId && !!d?.isDeleted

@@ -1,4 +1,4 @@
-export interface Tag {
+export interface TagMock {
   id?: number
   isFocused?: boolean
   isDeleted?: boolean
