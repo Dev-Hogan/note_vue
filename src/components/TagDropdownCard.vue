@@ -1,7 +1,7 @@
 <template>
   <Dropdown
-    :trigger
     v-model:open="open"
+    :trigger
     overlay-class-name="shadow-[0_18px_24px_[-10px]_rgba(0,0,0,0.06)]"
   >
     <slot></slot>
@@ -9,7 +9,7 @@
       <div
         class="flex flex-col w-[438px] h-[288px] bg-default rounded-[14px] border border-light-2"
       >
-        <NtTabs :tabs v-model:model-value="currentTab" class="max-h-[50px]"></NtTabs>
+        <NtTabs v-model:model-value="currentTab" :tabs class="max-h-[50px]"></NtTabs>
         <div class="flex flex-col flex-1 px-8 space-y-5 min-h-0">
           <NtInput v-model="name" placeholder="搜索或创建标签" class="bg-light h-[40px]">
             <template #prefix>

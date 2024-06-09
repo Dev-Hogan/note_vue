@@ -5,6 +5,10 @@
 
   <NtContent class="!mt-[130px]" content-class="space-y-5">
     <NtEditorCard
+      v-if="hasNewNote"
+      v-model:content="NoteEntity.content"
+      can-edit
+      :model-value="NoteEntity"
       @publish="
         (d, count) =>
           handleSaveNote({
@@ -13,12 +17,13 @@
             count
           })
       "
-      can-edit
-      v-if="hasNewNote"
-      v-model:content="NoteEntity.content"
-      :model-value="NoteEntity"
     ></NtEditorCard>
     <NtEditorCard
+      v-for="item in Notes"
+      :key="item.id"
+      v-model:content="item.content"
+      :can-edit="isFold"
+      :model-value="item"
       @publish="
         (d, count) =>
           handleSaveNote({
@@ -28,12 +33,7 @@
             count
           })
       "
-      :can-edit="isFold"
       @delete="(d) => d && handleDeleteNote([d])"
-      v-for="item in Notes"
-      :key="item.id"
-      v-model:content="item.content"
-      :model-value="item"
     ></NtEditorCard>
   </NtContent>
 </template>

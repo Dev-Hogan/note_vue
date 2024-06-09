@@ -3,11 +3,11 @@
     <div
       v-for="item in tabs"
       :key="item.id"
-      @click="handleActiveTab(item.id)"
       :class="[
         'text-[16px] font-semibold text-light-3 cursor-pointer',
         item.id === currentTab ? activeClass : ''
       ]"
+      @click="handleActiveTab(item.id)"
     >
       {{ item.name }}
     </div>

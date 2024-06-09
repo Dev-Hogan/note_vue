@@ -14,11 +14,11 @@
     </div>
     <input
       ref="inputRef"
+      v-model="modelValue"
       :autofocus="autoFocus"
       :autocomplete="autoComplete"
       :maxlength="maxLength"
       :placeholder="placeholder"
-      v-model="modelValue"
       :class="['flex-1 outline-none bg-transparent', inputClass]"
       type="text"
       @input="

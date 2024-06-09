@@ -1,5 +1,5 @@
 <template>
-  <Tooltip overlayClassName="tooltip" :title>
+  <Tooltip overlay-class-name="tooltip" :title>
     <template #default>
       <slot name="default"></slot>
     </template>

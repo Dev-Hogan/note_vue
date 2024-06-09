@@ -8,9 +8,9 @@
       </div>
       <div v-show="isShow" :class="['flex-1']">内容</div>
       <div
-        @click="isShow = true"
         v-if="!isShow"
         class="hover:cursor-pointer text-light-3 font-medium text-[13px] absolute top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%]"
+        @click="isShow = true"
       >
         点击「显示内容」查看
       </div>

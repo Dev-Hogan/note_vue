@@ -2,10 +2,10 @@
   <NtHeader title="标签">
     <template #edit>
       <div class="flex items-center space-x-3">
-        <NtButton @click="handleAddTag" class="_button">测试新增</NtButton>
-        <NtButton @click="handelGo2tag" class="_button">前往</NtButton>
-        <NtButton @click="handleMerge" class="_button">合并</NtButton>
-        <NtButton @click="handleRename" class="_button">重命名</NtButton>
+        <NtButton class="_button" @click="handleAddTag">测试新增</NtButton>
+        <NtButton class="_button" @click="handelGo2tag">前往</NtButton>
+        <NtButton class="_button" @click="handleMerge">合并</NtButton>
+        <NtButton class="_button" @click="handleRename">重命名</NtButton>
         <NtButton class="_button" @click="handleDeleteTag(selectKeys)">删除</NtButton>
         <NtDropdown overlay-class="min-h-[140px]" :show-count="false">
           <NtIconButton
@@ -14,7 +14,6 @@
           ></NtIconButton>
           <template #overlay>
             <div
-              class="text-[14px] font-medium"
               v-for="item in [
                 {
                   id: 1,
@@ -35,6 +34,7 @@
                 }
               ]"
               :key="item.name"
+              class="text-[14px] font-medium"
             >
               <div
                 :class="[
@@ -56,12 +56,12 @@
   <NtContent>
     <div class="flex flex-wrap gap-5 mt-[33px]">
       <NtButton
+        v-for="item in tags"
+        :key="item.id"
         :class="[
           'border rounded-3 bg-light space-x-2',
           selectKeys.includes(item.id || 0) ? '[&>span]:text-white bg-theme' : ''
         ]"
-        v-for="item in tags"
-        :key="item.id"
         @click="select(item)"
       >
         <span class="text-light-6">{{ item.name }}</span

@@ -6,6 +6,7 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 import AutoImport from 'unplugin-auto-import/vite'
 import AutoImportComponents from 'unplugin-vue-components/vite'
 import svgLoader from 'vite-svg-loader'
+import eslint from 'vite-plugin-eslint'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -26,13 +27,14 @@ export default defineConfig({
       extensions: ['vue'],
       deep: true,
       dts: 'src/components.d.ts'
-    })
+    }),
+    eslint()
   ],
   assetsInclude: ['**/*.svg'],
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
-      '$': path.resolve(__dirname, './src/assets/icon')
+      $: path.resolve(__dirname, './src/assets/icon')
     }
   }
 })

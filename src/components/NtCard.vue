@@ -1,9 +1,9 @@
 <template>
-  <div :class="['_common-card', isWrite ? '!py-0 !px-0' : '']" ref="cardRef">
+  <div ref="cardRef" :class="['_common-card', isWrite ? '!py-0 !px-0' : '']">
     <div
-      @click="click"
       v-show="!isWrite"
       class="group flex justify-between items-center text-[18px] font-medium text-light-7"
+      @click="click"
     >
       <div>如何安装自定义字体到APP里？如何使用已安装的自定义字体额？</div>
       <div class="flex opacity-0 group-hover:opacity-100 transition-opacity space-x-1">
@@ -54,7 +54,7 @@
         </NtDropdown>
       </div>
     </div>
-    <NtEditorContent v-model="text" v-show="isWrite" @push="push" ref="editor">
+    <NtEditorContent v-show="isWrite" ref="editor" v-model="text" @push="push">
       <template #linkTags>
         <NtIconButton
           icon="link"

@@ -1,7 +1,7 @@
 <template>
   <component
-    :class="[iconMap[icon]?.[1] ? '' : '_svg', iconClass]"
     :is="iconMap[icon]?.[0]"
+    :class="[iconMap[icon]?.[1] ? '' : '_svg', iconClass]"
   ></component>
 </template>
 

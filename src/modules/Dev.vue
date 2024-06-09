@@ -35,7 +35,7 @@
     <br />
     <Dialog> </Dialog>
     <NtButton type="primary" @click="dialogOpen = true">点击弹窗</NtButton>
-    <NtDialog title="false" v-model:open="dialogOpen"> 123</NtDialog>
+    <NtDialog v-model:open="dialogOpen" title="false"> 123</NtDialog>
 
     <HighLight></HighLight>
     <NtInput hight-light></NtInput>
@@ -50,7 +50,7 @@
     <div>返回结果</div>
     <pre>{{ severData }}</pre>
     <br />
-    <div class="container" ref="container">
+    <div ref="container" class="container">
       <div class="sidebar" :style="{ width: sidebarWidth + 'px' }">
         <!-- 侧边栏内容 -->
         <div class="resizer" @mousedown="startResize"></div>

@@ -1,10 +1,10 @@
 <template>
   <Progress
-    :showInfo="false"
+    :show-info="false"
     :percent
     :size="size"
     :stroke-color="ThemeColor.light"
-    trailColor="#FAFAFA"
+    trail-color="#FAFAFA"
   >
   </Progress>
 </template>

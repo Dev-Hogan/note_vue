@@ -2,9 +2,9 @@
   <div class="relative">
     <input
       v-model="inputText"
-      @input="updateHighlight"
       placeholder="输入文字"
       class="bg-transparent z-10"
+      @input="updateHighlight"
     />
     <div class="absolute left-2 top-0 bg-red-300">
       <span v-for="(text, index) in highlightedText" :key="index" :style="{ color: text.color }">{{

@@ -1,4 +1,4 @@
-export enum Tables {
+export enum TableName {
   category = 'category',
   note = 'note',
   tag = 'tag'

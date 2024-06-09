@@ -4,7 +4,7 @@
       :style="{ width: sidebarWidth + 'px' }"
       class="relative w-[--aside-width] pt-[48px] pb-[54px] bg-light flex flex-col border-r-[1px]"
     >
-      <NtInput class="mx-6 bg-light-2" placeholder="搜索" v-model="searchName">
+      <NtInput v-model="searchName" class="mx-6 bg-light-2" placeholder="搜索">
         <template #prefix>
           <NtIcon icon="search"></NtIcon>
         </template>
@@ -62,7 +62,7 @@
       </NtScrollbar>
 
       <div class="h-[54px] pl-[18px] pt-[10px] pb-[14px] fixed bottom-0">
-        <NtDropdown :show-count="false" overlayClass="p-11 flex flex-1 flex-col">
+        <NtDropdown :show-count="false" overlay-class="p-11 flex flex-1 flex-col">
           <template #overlay>
             <div class="!space-y-5 !py-7">
               <TodayCharts></TodayCharts>
@@ -72,7 +72,6 @@
               </div>
               <div class="space-y-3 font-medium">
                 <div
-                  class="flex items-center justify-between cursor-pointer min-h-[36px]"
                   v-for="(item, i) in [
                     {
                       name: '数据统计',
@@ -90,6 +89,7 @@
                     }
                   ]"
                   :key="i"
+                  class="flex items-center justify-between cursor-pointer min-h-[36px]"
                   @click="item?.action?.()"
                 >
                   <div>{{ item.name }}</div>
@@ -107,9 +107,9 @@
         </NtDropdown>
       </div>
       <div
+        class="h-full w-2 cursor-col-resize bg-transparent absolute top-0 bottom-0 right-0 mousedown:bg-theme-40"
         @mousedown="startResize"
         @mouseup="stopResize"
-        class="h-full w-2 cursor-col-resize bg-transparent absolute top-0 bottom-0 right-0 mousedown:bg-theme-40"
       ></div>
     </aside>
     <main class="relative flex flex-1 overflow-auto bg-default text-light-7">

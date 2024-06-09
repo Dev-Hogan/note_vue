@@ -40,11 +40,11 @@
       >
         <div>
           <NtInput
-            ref="inputRefs"
-            :class="['_code-input', i === 4 ? '!ml-[20px]' : '']"
             v-for="i in 6"
+            ref="inputRefs"
             :key="i"
             v-model="verificationCode[i - 1]"
+            :class="['_code-input', i === 4 ? '!ml-[20px]' : '']"
             :max-length="1"
             auto-complete="new-password"
             @update:model-value="(d: string) => updateCode(i - 1, d || '')"
@@ -65,12 +65,12 @@
           placeholder="昵称"
         ></NtInput>
         <NtButton
-          @click="goHome"
           :disabled="!isWriteName"
           :class="[
             'rounded-3 text-white bg-light-2 px-[150px] py-[12px] w-full text-[16px] mt-[48px]',
             isWriteName ? 'bg-theme' : ''
           ]"
+          @click="goHome"
           >开始</NtButton
         >
       </div>
@@ -81,8 +81,8 @@
     <NtIconButton
       v-if="!step[0]"
       icon="arrowLeft3"
-      @click="back"
       class="absolute top-[30px] left-[30px]"
+      @click="back"
     ></NtIconButton>
   </div>
 </template>

@@ -64,25 +64,25 @@
       </div>
       <div class="flex justify-between">
         <div class="flex">
-          <TagDropdownCard :categoryId="modelValue.categoryId" :when-save="refresh" :open>
+          <TagDropdownCard :category-id="modelValue.categoryId" :when-save="refresh" :open>
             <NtIconButton icon="tag"></NtIconButton>
           </TagDropdownCard>
           <NtIconButton icon="picture"></NtIconButton>
           <NtIconButton
             icon="bold"
-            @click="editor?.chain().focus().toggleBold().run()"
             :disabled="!editor?.can().chain().focus().toggleBold().run()"
             :class="{ 'is-active': editor?.isActive('bold') }"
+            @click="editor?.chain().focus().toggleBold().run()"
           ></NtIconButton>
           <NtIconButton
             icon="numbering"
-            @click="editor?.chain().focus().toggleOrderedList().run()"
             :class="{ 'is-active': editor?.isActive('orderedList') }"
+            @click="editor?.chain().focus().toggleOrderedList().run()"
           ></NtIconButton>
           <NtIconButton
             icon="li"
-            @click="editor?.chain().focus().toggleBulletList().run()"
             :class="{ 'is-active': editor?.isActive('bulletList') }"
+            @click="editor?.chain().focus().toggleBulletList().run()"
           ></NtIconButton>
           <!-- <NtIconButton icon="fullScreen2"></NtIconButton> -->
         </div>

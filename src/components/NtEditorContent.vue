@@ -1,5 +1,5 @@
 <template>
-  <div :class="['editor overflow-hidden', isFullscreen ? 'bg-theme-10' : '']" ref="el">
+  <div ref="el" :class="['editor overflow-hidden', isFullscreen ? 'bg-theme-10' : '']">
     <editor-content :editor="editor" :class="[isFullscreen ? 'mt-[46px] content' : '']">
     </editor-content>
     <NtIconButton class="absolute top-[10px] right-[24px]" icon="more"></NtIconButton>
@@ -25,19 +25,19 @@
         <NtIconButton icon="picture"></NtIconButton>
         <NtIconButton
           icon="bold"
-          @click="editor?.chain().focus().toggleBold().run()"
           :disabled="!editor?.can().chain().focus().toggleBold().run()"
           :class="{ 'is-active': editor?.isActive('bold') }"
+          @click="editor?.chain().focus().toggleBold().run()"
         ></NtIconButton>
         <NtIconButton
           icon="numbering"
-          @click="editor?.chain().focus().toggleOrderedList().run()"
           :class="{ 'is-active': editor?.isActive('orderedList') }"
+          @click="editor?.chain().focus().toggleOrderedList().run()"
         ></NtIconButton>
         <NtIconButton
           icon="li"
-          @click="editor?.chain().focus().toggleBulletList().run()"
           :class="{ 'is-active': editor?.isActive('bulletList') }"
+          @click="editor?.chain().focus().toggleBulletList().run()"
         ></NtIconButton>
         <NtIconButton icon="fullScreen2" @click="toggle"></NtIconButton>
       </div>

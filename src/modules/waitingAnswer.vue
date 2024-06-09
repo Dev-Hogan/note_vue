@@ -18,6 +18,11 @@
       :model-value="NoteEntity"
     ></NtEditorCard> -->
     <NtEditorCard
+      v-for="item in Notes"
+      :key="item.id"
+      v-model:content="item.content"
+      :can-edit="isFold"
+      :model-value="item"
       @publish="
         (d) =>
           handleSaveNote({
@@ -26,12 +31,7 @@
             id: item.id
           })
       "
-      :can-edit="isFold"
       @delete="(d) => d && handleDeleteNote([d])"
-      v-for="item in Notes"
-      :key="item.id"
-      v-model:content="item.content"
-      :model-value="item"
     ></NtEditorCard>
   </NtContent>
 </template>

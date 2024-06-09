@@ -13,7 +13,7 @@ export async function searchTrashNote(option: GetAllNoteOption) {
   const ret = await filterStore<Note>(
     Tables.note,
     (d) => {
-      return  !!d?.isDeleted && d?.tagId === tagId
+      return !!d?.isDeleted && d?.tagId === tagId
     },
     pageNo,
     pageSize

@@ -4,8 +4,8 @@
       v-for="tag in [{ name: '无标签', id: undefined }, ...tags]"
       :key="tag.id"
       :value="tag.id"
-      @activated="(d) => (tagId = d)"
       :class="[tagId === tag.id ? 'text-theme' : '']"
+      @activated="(d) => (tagId = d)"
     >
       <NtDropdown
         :trigger="'contextmenu'"

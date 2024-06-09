@@ -1,11 +1,11 @@
 <template>
   <Dropdown
+    :trigger="[trigger]"
     @open-change="
       (d) => {
         isOpen = d
       }
     "
-    :trigger="[trigger]"
   >
     <template #default>
       <div v-if="$slots.default">
@@ -39,8 +39,8 @@
                 </div>
               </slot>
               <NtIcon
-                class="absolute right-7 top-[50%] translate-y-[-50%]"
                 v-if="item.appendIcon"
+                class="absolute right-7 top-[50%] translate-y-[-50%]"
                 :icon="item.appendIcon"
                 :icon-class="item.iconClass"
               >
@@ -55,7 +55,7 @@
           </div>
         </slot>
         <slot v-if="showCount" name="overlayAppend">
-          <div @click.stop class="p-3 text-light-4 text-[12px] space-x-2 px-6">
+          <div class="p-3 text-light-4 text-[12px] space-x-2 px-6" @click.stop>
             <span>卡片</span><span>:</span><span>{{ chars }}</span>
           </div>
         </slot>

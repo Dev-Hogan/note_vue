@@ -4,8 +4,8 @@
       <RouterView />
     </NtConfigProvide>
     <div
-      @click="geDevTool"
       class="text-light-7 absolute bottom-12 right-12 border rounded-full w-14 h-14 flex items-center justify-center cursor-pointer"
+      @click="geDevTool"
     >
       dev
     </div>

@@ -1,1 +1,2 @@
-export * from './note'
+export * from './base'
+export * from './type'
