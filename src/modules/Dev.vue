@@ -6,6 +6,15 @@
     </template>
   </NtHeader>
   <NtContent>
+    <div class="my-[16px]">
+      <NtInput v-model="supTag!.name" placeholder="搜索/新增tag"></NtInput>
+      <div class="space-x-4">
+        <button @click="async () => (supTagList = await searchTagAPI(supTag))">搜索tag</button>
+        <button @click="saveTagAPI(supTag! as Tag)">增加tag</button>
+      </div>
+      <!-- <button>删除tag</button> -->
+      <div>tag: {{ supTagList }}</div>
+    </div>
     <p>{{ user?.token }}</p>
     <p>{{ user?.isLogin() }}</p>
     <p>{{ user?.userInfo }}</p>
@@ -103,7 +112,7 @@
 import { useThemMode } from '@/stores'
 import { useEditor, EditorContent } from '@tiptap/vue-3'
 import StarterKit from '@tiptap/starter-kit'
-import { Icon, ThemeMode } from '@/models'
+import { Icon, ThemeMode, Tag } from '@/models'
 import { iconMap } from '@/utils'
 import { message } from 'ant-design-vue'
 import { Dialog } from '@/components/NtDialog2'
@@ -118,9 +127,14 @@ import {
   logout,
   getTagsAPI,
   addTagAPI,
-  loginWithGithub
+  loginWithGithub,
+  searchTagAPI,
+  saveTagAPI
 } from '@/api'
 import { useUserInfo } from '@/stores'
+
+const supTag = ref<Pick<Tag, 'category_id' | 'name'>>({ name: '', category_id: null })
+const supTagList = ref<Tag[] | null>()
 
 const user = useUserInfo()
 const tags = ref<any[]>([])

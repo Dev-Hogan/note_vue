@@ -1,7 +1,7 @@
 <template>
   <NtScrollbar view-class="flex py-3 space-x-2">
     <NtTag
-      v-for="tag in [{ name: '无标签', id: undefined }, ...tags]"
+      v-for="tag in [{ name: '无标签', id: undefined }, ...(tags || [])]"
       :key="tag.id"
       :value="tag.id"
       :class="[tagId === tag.id ? 'text-theme' : '']"
@@ -64,5 +64,4 @@ const { state: tags } = useAsyncState(
     immediate: true
   }
 )
-
 </script>

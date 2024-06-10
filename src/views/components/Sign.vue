@@ -33,7 +33,6 @@
 <script setup lang="ts">
 import { message } from 'ant-design-vue'
 import { omit } from 'lodash'
-import { login, register } from '@/api'
 import { useRouter } from 'vue-router'
 import { Routes } from '@/models'
 import { useUserInfo } from '@/stores'

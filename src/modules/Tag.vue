@@ -81,9 +81,13 @@ const categoryId = ref<number>()
 
 const selectKeys = ref<number[]>([])
 const tags = ref<TagMock[]>([])
-const { execute: refreshTags } = useAsyncState(async () => (tags.value = await getAllTags()), [], {
-  immediate: false
-})
+const { execute: refreshTags } = useAsyncState(
+  async () => (tags.value = (await getAllTags()) || []),
+  [],
+  {
+    immediate: false
+  }
+)
 refreshTags()
 
 function select(item: TagMock) {

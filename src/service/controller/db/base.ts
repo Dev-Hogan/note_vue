@@ -17,7 +17,6 @@ class DataBase extends Dexie {
     })
   }
 }
-
 const db = new DataBase()
 
 function initDB(tableNames?: { name: TableName; data: any[] }[]) {

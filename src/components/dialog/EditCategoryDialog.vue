@@ -1,14 +1,14 @@
 <template>
   <NtDialog v-model:open="open" :title="isEdit ? '重命名' : ''">
     <NtInput
-      v-model="entity.title"
+      v-model="entity!.title"
       class="pl-3 py-[9px] select-all"
       input-class="select-all"
       auto-focus
     ></NtInput>
     <template #footer>
       <NtButton @click="resetDialog">取消</NtButton>
-      <NtButton type="primary" @click="handleSave(entity.title)">确认</NtButton>
+      <NtButton type="primary" @click="handleSave(entity!.title)">确认</NtButton>
     </template>
   </NtDialog>
 </template>

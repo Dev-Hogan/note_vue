@@ -20,6 +20,7 @@ module.exports = {
   plugins: ['vue', '@typescript-eslint'],
   rules: {
     'vue/multi-word-component-names': 0,
-    'max-len': ['error', { code: 180, ignoreComments: true, ignoreUrls: true }]
+    'max-len': ['error', { code: 180, ignoreComments: true, ignoreUrls: true }],
+    '@typescript-eslint/no-explicit-any': 'warn'
   }
 }

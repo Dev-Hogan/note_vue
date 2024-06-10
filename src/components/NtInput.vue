@@ -34,7 +34,7 @@
 // import { useDebounceFn } from '@vueuse/core'
 const isFocused = ref(false)
 const isInput = ref(false)
-const modelValue = defineModel<string>()
+const modelValue = defineModel< string | null | undefined>()
 withDefaults(
   defineProps<{
     placeholder?: string

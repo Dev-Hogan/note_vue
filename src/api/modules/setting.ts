@@ -19,7 +19,7 @@ export async function getAccount() {
 export async function searchAllNotesByName(name?: string) {
   if (!name) return []
   const notes = await getAllNote()
-  return notes.filter((n) => n.content?.toLocaleUpperCase().includes(name.toLocaleUpperCase()))
+  return notes?.filter((n) => n.content?.toLocaleUpperCase().includes(name.toLocaleUpperCase()))
 }
 
 /**获取总字符、问题、分类、标签 */
@@ -33,19 +33,19 @@ export async function getStatistics() {
   const categories = await getAllMuCategory()
   const chars: Statistics = {
     name: '总字符',
-    count: notes.reduce((p, c) => (p += c.count || 0), 0)
+    count: notes?.reduce((p, c) => (p += c.count || 0), 0) || 0
   }
   const question: Statistics = {
     name: '问题',
-    count: notes.length
+    count: notes?.length || 0
   }
   const category: Statistics = {
     name: '分类',
-    count: categories.length
+    count: categories?.length || 0
   }
   const tag: Statistics = {
     name: '标签',
-    count: tags?.length
+    count: tags?.length || 0
   }
   return [chars, question, category, tag]
 }

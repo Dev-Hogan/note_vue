@@ -26,7 +26,7 @@ export async function login(credentials?: SingUp) {
 }
 
 export async function logout() {
-  const { error } = await supabase.auth.signOut()
+  await supabase.auth.signOut()
   console.debug('登出成功')
 }
 
@@ -34,14 +34,12 @@ export async function getUser() {
   return supabase.auth.getUser()
 }
 
-
 export async function loginWithGithub() {
   return await supabase.auth.signInWithOAuth({
-    provider:'google'
+    provider: 'google'
   })
 }
 
 export async function loginWithEmail() {
   return await supabase.auth.signInWithOtp
-  
 }

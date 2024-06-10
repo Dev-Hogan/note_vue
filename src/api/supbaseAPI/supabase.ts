@@ -12,20 +12,37 @@ export type Database = {
       category: {
         Row: {
           created_at: string
+          icon: string | null
           id: number
+          is_deleted: boolean | null
           name: string | null
+          user_id: string | null
         }
         Insert: {
           created_at?: string
+          icon?: string | null
           id?: number
+          is_deleted?: boolean | null
           name?: string | null
+          user_id?: string | null
         }
         Update: {
           created_at?: string
+          icon?: string | null
           id?: number
+          is_deleted?: boolean | null
           name?: string | null
+          user_id?: string | null
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "category_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       note: {
         Row: {
@@ -37,6 +54,7 @@ export type Database = {
           is_deleted: boolean | null
           note_state: Database["public"]["Enums"]["note_state"] | null
           tag_id: number | null
+          user_id: string | null
         }
         Insert: {
           category_id?: number | null
@@ -47,6 +65,7 @@ export type Database = {
           is_deleted?: boolean | null
           note_state?: Database["public"]["Enums"]["note_state"] | null
           tag_id?: number | null
+          user_id?: string | null
         }
         Update: {
           category_id?: number | null
@@ -57,6 +76,7 @@ export type Database = {
           is_deleted?: boolean | null
           note_state?: Database["public"]["Enums"]["note_state"] | null
           tag_id?: number | null
+          user_id?: string | null
         }
         Relationships: [
           {
@@ -73,81 +93,56 @@ export type Database = {
             referencedRelation: "tag"
             referencedColumns: ["id"]
           },
-        ]
-      }
-      password: {
-        Row: {
-          created_at: string
-          id: number
-          password: string | null
-          user_id: number | null
-        }
-        Insert: {
-          created_at?: string
-          id?: number
-          password?: string | null
-          user_id?: number | null
-        }
-        Update: {
-          created_at?: string
-          id?: number
-          password?: string | null
-          user_id?: number | null
-        }
-        Relationships: [
           {
-            foreignKeyName: "password_user_id_fkey"
+            foreignKeyName: "note_user_id_fkey"
             columns: ["user_id"]
             isOneToOne: false
-            referencedRelation: "user"
+            referencedRelation: "users"
             referencedColumns: ["id"]
           },
         ]
       }
       tag: {
         Row: {
+          category_id: number | null
           created_at: string
           id: number
+          is_deleted: boolean | null
           name: string | null
+          user_id: string | null
         }
         Insert: {
+          category_id?: number | null
           created_at?: string
           id?: number
+          is_deleted?: boolean | null
           name?: string | null
+          user_id?: string | null
         }
         Update: {
+          category_id?: number | null
           created_at?: string
           id?: number
+          is_deleted?: boolean | null
           name?: string | null
+          user_id?: string | null
         }
-        Relationships: []
-      }
-      user: {
-        Row: {
-          created_at: string
-          email: string | null
-          id: number
-          phone: number | null
-          updated_at: string | null
-          username: string | null
-        }
-        Insert: {
-          created_at?: string
-          email?: string | null
-          id?: number
-          phone?: number | null
-          updated_at?: string | null
-          username?: string | null
-        }
-        Update: {
-          created_at?: string
-          email?: string | null
-          id?: number
-          phone?: number | null
-          updated_at?: string | null
-          username?: string | null
-        }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "tag_category_id_fkey"
+            columns: ["category_id"]
+            isOneToOne: false
+            referencedRelation: "category"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "tag_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
       }
     }
     Views: {
